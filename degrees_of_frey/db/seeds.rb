@@ -11,5 +11,5 @@ chracters = JSON.parse(File.read("#{Rails.root}/db/data/character_results.json")
 
 chracters.each do |key, value|
 
-  Character.create!(:name => value['name'], :icon => value['name'], :page => key )
+  Character.create!(:name => value['name'], :icon => value['image'], :page => key )
 end

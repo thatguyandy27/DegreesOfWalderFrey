@@ -1,0 +1,12 @@
+<ul>
+<% @characters.each do |character| %>
+    <li><%= character.name %>
+        <% if character.icon != 'none' %>
+            <img src='<%= get_image_url(character.icon) %>' />
+        <% else %>
+        <% end %>
+    </li>
+<% end %>
+
+<ul>
+<%= will_paginate %> 

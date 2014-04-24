@@ -1,6 +1,6 @@
 <ul>
 <% @characters.each do |character| %>
-    <li><%= character.name %>
+    <li><%= link_to character.name, character_path(character) %>
         <% if character.icon != 'none' %>
             <img src='<%= get_image_url(character.icon) %>' />
         <% else %>

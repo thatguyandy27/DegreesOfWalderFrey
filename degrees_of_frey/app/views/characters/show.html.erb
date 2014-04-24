@@ -1,0 +1,18 @@
+<section class='character'>
+  <h1><%= @character.name %>
+  <img src='<%= get_image_url(@character.icon) %>' />
+  <%= link_to "Wiki Page", get_wiki_url(@character) %>
+  <h3>Relationships</h3>
+  <ul>
+    <% @character.relationships.each do |relationship| %>
+      <% if relationship.parent_id == @character.id %>
+        <span><%= link_to relationship.child.name, character_path(relationship.child) %> </span>
+        <span><%= relationship.name %></span>
+      <% else %>
+        <span><%= link_to relationship.parent.name, character_path(relationship.parent) %> </span>
+        <span><%= relationship.name %></span>
+      <% end %>
+    <% end %> 
+  </ul>
+
+</section>

@@ -11,4 +11,8 @@ module ApplicationHelper
     return full_url
 
   end
+
+  def get_wiki_url(character)
+    return 'http://awoiaf.westeros.org' + character.page
+  end
 end

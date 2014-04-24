@@ -22,8 +22,10 @@ characters.each do |key, value|
   if relationships
     relationships.each do |character|
       child = Character.find_by_page(character)
-      Relationship.create!(:parent_id => parent.id, :child_id => child.id) unless 
-        Relationship.find_relationship(child.id, parent.id)
+      puts "#{parent.name}: #{child.name}"
+      if !Relationship.find_relationship(child, parent) 
+        Relationship.create!(:parent_id => parent.id, :child_id => child.id) 
+      end
     end
   end
 end
@@ -34,12 +36,13 @@ house.each do |key, house|
   house_characters = house["characters"]
   max = house_characters.size - 1
   house_characters.each_index do |index|
-    puts "#{index} => #{house_characters[index]}"
+    #puts "#{index} => #{house_characters[index]}"
     parent = Character.find_by_page(house_characters[index])
     (index + 1).upto(max) do |i|
       child = Character.find_by_page(house_characters[i])
-      Relationship.create!(:parent_id => parent.id, :child_id => child.id) unless 
-        Relationship.find_relationship(child.id, parent.id) 
+      if !Relationship.find_relationship(child, parent) 
+        Relationship.create!(:parent_id => parent.id, :child_id => child.id) 
+      end
     end
   end
 end

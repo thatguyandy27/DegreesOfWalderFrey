@@ -6,9 +6,9 @@ class Character < ActiveRecord::Base
   has_many :parents, :through => :reverse_relationships, :source => :parent 
   
   validates(:name, :presence => true)
-  validates(:page, :presence => true)
+  validates(:page, :presence => true, uniqueness: { case_sensitive: false})
 
   def all_relationships
-    return Relationships.find_all_relationships(self)
+    return Relationship.find_all_relationships(self)
   end
 end
